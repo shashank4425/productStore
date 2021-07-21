@@ -1,0 +1,94 @@
+package com.swipecartitem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import javassist.NotFoundException;
+
+@RestController
+public class UserAuthHandler {
+
+	@Autowired
+	UserAuthService userAuthservice;
+
+	
+	List<user> user_List=new ArrayList<user>();
+	boolean sessionStatus=false;
+
+	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
+		HashMap<String, Object> hm=new HashMap<String, Object>();
+		  hm.put("sessionId", session.getAttribute("userId"));
+		return new ResponseEntity<Object>(hm,HttpStatus.OK);
+	}
+	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<Object> VerifyUser(@RequestBody user add_user, HttpSession session, HttpServletResponse res){
+		HashMap<String, Object> hm=new HashMap<String, Object>();
+		List<Object> lists=new ArrayList<Object>();
+		   		
+		    userAuthservice.addUser(add_user);
+		    sessionStatus=true;
+			 hm.put("resCode","0");
+			 hm.put("resMess","Registration completed");
+			 hm.put("resSatus",res.getStatus());
+			 hm.put("sessionStatus", sessionStatus);	    
+			session.setAttribute("sessionId",add_user.getId());
+		return new ResponseEntity<Object>(hm,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
+		HashMap<String, Object> hm=new HashMap<String, Object>();
+		session.removeAttribute("sessionId");
+		 hm.put("sessionStatus", sessionStatus);	
+		 hm.put("sessionId", session.getAttribute("userId"));
+		 hm.put("resMess", "You have successfully logged out");
+		return new ResponseEntity<Object>(hm,status.OK);
+	}
+	 @DeleteMapping(value="/Swipecart/api/RemoveUser/{id}", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	 public ResponseEntity<Object> RemoveItem(@PathVariable Long id,HttpStatus status){
+		 HashMap<String, String> hm=new HashMap<String, String>();
+		 userAuthservice.RemoveUser(id);
+		 hm.put("Message", "User deleted successfully");
+		 return new ResponseEntity<Object>(hm,status.OK);
+		 
+	 }
+	 
+	 @GetMapping(value="/Swipecart/api/getUsers", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	 public ResponseEntity<Object> GetUsers(HttpStatus status){
+		 HashMap<String, String> hm=new HashMap<String, String>();
+		 user_List=userAuthservice.getUsers();
+		 return new ResponseEntity<Object>(user_List,status.OK);
+		 
+	 }
+}

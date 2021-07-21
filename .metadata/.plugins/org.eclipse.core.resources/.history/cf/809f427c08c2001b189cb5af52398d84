@@ -1,0 +1,37 @@
+package com.swipcartitem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SwipcartHandler {
+
+	@Autowired
+	SwipcartServices swipcartservice;
+	List<CartItem> cartitem=new ArrayList<CartItem>();
+	 @PostMapping(value="/Swipcart/api/AddtoCart", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	 public ResponseEntity<Object> getCartList(@RequestBody CartItem cartitem, HttpServletResponse res, HttpStatus status){
+		 swipcartservice.AddToCart(cartitem);
+		 return new ResponseEntity<Object>(cartitem,HttpStatus.OK);
+		 
+	 }
+	 
+	 @GetMapping(value="/Swipcart/api/GETSwipcartitems", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
+	
+		cartitem= swipcartservice.getSwipcrtitems();
+		System.out.println(cartitem);
+		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
+		 
+	 }
+}

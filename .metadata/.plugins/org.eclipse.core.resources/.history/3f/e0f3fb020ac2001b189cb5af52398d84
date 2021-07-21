@@ -1,0 +1,28 @@
+package com.swipcartitem;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@org.springframework.stereotype.Service
+public class SwipcartServices {
+	
+	@Autowired
+	SwipcartdataImpl swipcartdataImpl;
+	
+	public void AddToCart(CartItem cartitem) {
+		swipcartdataImpl.save(cartitem);
+	}
+
+	public List<CartItem> getSwipcrtitems() {
+		return swipcartdataImpl.findAll();
+	}
+
+	public void RemoveItem(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}

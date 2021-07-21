@@ -1,0 +1,41 @@
+package com.swipcartitem;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity (name="CARTLIST_TAB")
+public class CartItem {
+	
+	@Id
+	  @Column(name="ID")
+	   int id;
+	   @Column(name="PROD_ID")
+	   String prodid;
+	   @Column(name="PROD_URI")
+	   String url;
+	   @Column(name="PROD_NAME")
+	   String prodName;
+	   @Column(name="PROD_TITLE")
+	   String prodTitle;
+	   @Column(name="PROD_PATH")
+	   String prodPath;
+	   @Column(name="PROD_CAMARA")
+	   String prodCamara;
+	   @Column(name="PROD_BATTERY")
+	   String prodBattery;
+	   @Column(name="PROD_OFFERPRICE")
+	   String prodOfferPrice;
+	   @Column(name="PROD_PREVPRICE")
+	   String prodPrevPrice;
+	   @Column(name="PROD_RAM")
+	   String prodRam;
+	   @Column(name="PROD_ROM")
+	   String prodRom;
+	   @Column(name="PROD_DISPLAYSIZE")
+	   String prodDisplaySize;
+	   @Column(name="PROD_COLOR")
+	   String prodColor;
+	
+}

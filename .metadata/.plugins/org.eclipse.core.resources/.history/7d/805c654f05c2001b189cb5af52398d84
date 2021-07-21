@@ -1,0 +1,139 @@
+package com.swipcartitem;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity (name="CRTLIST_TAB")
+public class CartItem {
+	
+	@Id
+	  @Column(name="ID")
+	   int id;
+	   @Column(name="PROD_ID")
+	   String prodid;
+	   @Column(name="PROD_NAME")
+	   String prodname;
+	   @Column(name="PROD_TITLE")
+	   String prodtitle;
+	   @Column(name="PROD_PATH")
+	   String prodpath;
+	   @Column(name="PROD_URI")
+	   String produri;
+	   @Column(name="PROD_CAMARA")
+	   String prodcamara;
+	   @Column(name="PROD_BATTERY")
+	   String prodbattery;
+	   @Column(name="PROD_OFFERPRICE")
+	   String prodofferprice;
+	   @Column(name="PROD_PREVPRICE")
+	   String prodprevprice;
+	   @Column(name="PROD_RAM")
+	   String prodram;
+	   @Column(name="PROD_ROM")
+	   String prodrom;
+	   @Column(name="PROD_DISPLAYSIZE")
+	   String proddisplasize;
+	   @Column(name="PROD_COLOR")
+	   String prodcolor;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getProdid() {
+		return prodid;
+	}
+	public void setProdid(String prodid) {
+		this.prodid = prodid;
+	}
+	public String getProdname() {
+		return prodname;
+	}
+	public void setProdname(String prodname) {
+		this.prodname = prodname;
+	}
+	public String getProdtitle() {
+		return prodtitle;
+	}
+	public void setProdtitle(String prodtitle) {
+		this.prodtitle = prodtitle;
+	}
+	public String getProdpath() {
+		return prodpath;
+	}
+	public void setProdpath(String prodpath) {
+		this.prodpath = prodpath;
+	}
+	public String getProduri() {
+		return produri;
+	}
+	public void setProduri(String produri) {
+		this.produri = produri;
+	}
+	public String getProdcamara() {
+		return prodcamara;
+	}
+	public void setProdcamara(String prodcamara) {
+		this.prodcamara = prodcamara;
+	}
+	public String getProdbattery() {
+		return prodbattery;
+	}
+	public void setProdbattery(String prodbattery) {
+		this.prodbattery = prodbattery;
+	}
+	public String getProdofferprice() {
+		return prodofferprice;
+	}
+	public void setProdofferprice(String prodofferprice) {
+		this.prodofferprice = prodofferprice;
+	}
+	public String getProdprevprice() {
+		return prodprevprice;
+	}
+	public void setProdprevprice(String prodprevprice) {
+		this.prodprevprice = prodprevprice;
+	}
+	public String getProdram() {
+		return prodram;
+	}
+	public void setProdram(String prodram) {
+		this.prodram = prodram;
+	}
+	public String getProdrom() {
+		return prodrom;
+	}
+	public void setProdrom(String prodrom) {
+		this.prodrom = prodrom;
+	}
+	public String getProddisplasize() {
+		return proddisplasize;
+	}
+	public void setProddisplasize(String proddisplasize) {
+		this.proddisplasize = proddisplasize;
+	}
+	public String getProdcolor() {
+		return prodcolor;
+	}
+	public void setProdcolor(String prodcolor) {
+		this.prodcolor = prodcolor;
+	}
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", prodid=" + prodid + ", prodname=" + prodname + ", prodtitle=" + prodtitle
+				+ ", prodpath=" + prodpath + ", produri=" + produri + ", prodcamara=" + prodcamara + ", prodbattery="
+				+ prodbattery + ", prodofferprice=" + prodofferprice + ", prodprevprice=" + prodprevprice + ", prodram="
+				+ prodram + ", prodrom=" + prodrom + ", proddisplasize=" + proddisplasize + ", prodcolor=" + prodcolor
+				+ ", getId()=" + getId() + ", getProdid()=" + getProdid() + ", getProdname()=" + getProdname()
+				+ ", getProdtitle()=" + getProdtitle() + ", getProdpath()=" + getProdpath() + ", getProduri()="
+				+ getProduri() + ", getProdcamara()=" + getProdcamara() + ", getProdbattery()=" + getProdbattery()
+				+ ", getProdofferprice()=" + getProdofferprice() + ", getProdprevprice()=" + getProdprevprice()
+				+ ", getProdram()=" + getProdram() + ", getProdrom()=" + getProdrom() + ", getProddisplasize()="
+				+ getProddisplasize() + ", getProdcolor()=" + getProdcolor() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+}
+	
